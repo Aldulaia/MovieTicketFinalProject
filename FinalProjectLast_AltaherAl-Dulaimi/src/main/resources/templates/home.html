@@ -1,0 +1,190 @@
+<!DOCTYPE>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<title>Home Movies Page</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<style>
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+body {
+	background-color: white;
+	font-family: "Raleway", sans-serif;
+	text-align: center;
+	padding-top: 20px;
+	color: black;
+}
+
+.moviesContainer {
+	border: 2px red outset;
+	margin-left: 250px;
+	margin-right: 250px;
+	border-radius: 10px;
+}
+
+.movie {
+	border: 2px solid black;
+	margin: 30px;
+}
+
+#loginRegisterContainer {
+	margin-left: 900px;
+	paddig-top: 6px;
+}
+
+.loginInfo {
+	font-family: "Raleway", sans-serif;
+	position: fixed;
+	bottom: 230;
+	right: 5;
+	width: 300px;
+	border-left: 4px solid #73AD21;
+	border-top: 4px solid #73AD21;
+	border-bottom: 4px solid #73AD21;
+	box-sizing: border-box;
+	width: 20%;
+}
+
+.form {
+	padding-top: 5px;
+}
+
+.CovidAlert {
+	font-family: "Raleway", sans-serif;
+	position: fixed;
+	bottom: 70;
+	right: 5;
+	width: 300px;
+	border-left: 4px solid black;
+	border-top: 4px solid black;
+	border-bottom: 4px solid black;
+	box-sizing: border-box;
+	width: 20%;
+	background-color: red;
+	color: white;
+}
+
+span {
+	color: red;
+}
+
+.SpecialOffer {
+	font-family: "Raleway", sans-serif;
+	position: realtive;
+	bottom: 440;
+	right: 880;
+	width: 300px;
+	width: 20%;
+	background-color: red;
+	color: white;
+	-ms-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+</style>
+</head>
+
+<body>
+	<h1>Movie Tickets Window</h1>
+	<p th:text="${seatReserved}" style="color: red;">
+		<b> </b>
+	</p>
+	<hr />
+	<hr />
+
+	<div class="SpecialOffer">
+		<i class="material-icons lock">verified</i>
+
+		<div>New Special Offers for Students!</div>
+
+	</div>
+
+
+	<div class="CovidAlert">
+		<i class="material-icons lock">event</i>
+
+		<div>Covid Alert is a message set on the application by the
+			adminstrator as a notice to place the movie's dates under 'subject to
+			change' with modified times</div>
+
+	</div>
+
+
+	<!--  Will not show up until someone logs in -->
+	<div class="loginInfo" sec:authorize="isAuthenticated()">
+		<hr>
+		<i class="material-icons Perm-identity">face</i> <b>User's Name:</b> <span
+			sec:authentication="name"></span> <br>
+		<hr>
+		<div>
+			<form class="form" th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout" />
+			</form>
+		</div>
+	</div>
+
+	<div id="loginRegisterContainer">
+		<a th:href="@{/login}"> Login</a> <br>
+		<hr>
+		<a th:href="@{/register}"> Sign-up</a>
+	</div>
+
+	<div class="moviesContainer">
+
+		<div class="movie">
+			<img
+				src="https://upload.wikimedia.org/wikipedia/en/0/05/Frozen_%282013_film%29_poster.jpg" />
+			<p>Frozen</p>
+			<form action="#" th:action="@{/movieOne}">
+				<input type="submit" value="RESERVE" />
+			</form>
+		</div>
+
+
+		<div class="movie">
+			<img
+				src="https://upload.wikimedia.org/wikipedia/en/4/43/The_Call_of_the_Wild_poster.jpg" />
+			<p>The Call Of The Wild</p>
+			<form action="#" th:action="@{/movieTwo}">
+				<input type="submit" value="RESERVE" />
+			</form>
+		</div>
+
+
+		<div class="movie">
+			<img
+				src="https://upload.wikimedia.org/wikipedia/en/9/9d/Disney_The_Lion_King_2019.jpg" />
+			<p>The Lion King</p>
+			<form action="#" th:action="@{/movieThree}">
+				<input type="submit" value="RESERVE" />
+			</form>
+		</div>
+
+
+		<div class="movie">
+			<img
+				src="https://upload.wikimedia.org/wikipedia/en/9/9a/Aladdin_%28Official_2019_Film_Poster%29.png" />
+			<p>Aladdin</p>
+			<form action="#" th:action="@{/movieFour}">
+				<input type="submit" value="RESERVE" />
+			</form>
+		</div>
+
+		<div class="movie">
+			<img
+				src="https://upload.wikimedia.org/wikipedia/en/4/4c/Toy_Story_4_poster.jpg" />
+			<p>Toy Story 4</p>
+			<form action="#" th:action="@{/movieFive}">
+				<input type="submit" value="RESERVE" />
+			</form>
+		</div>
+
+
+
+	</div>
+
+
+</body>
+</html>

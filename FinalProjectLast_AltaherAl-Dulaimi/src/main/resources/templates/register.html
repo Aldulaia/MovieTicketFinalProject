@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+
+<style>
+body {
+	background-color: #303641;
+	font-family: "Raleway", sans-serif;
+	text-align: center;
+	padding-top: 20px;
+	color: white;
+}
+
+pre {
+	border: 2px red outset;
+	margin-left: 250px;
+	margin-right: 250px;
+	border-radius: 10px;
+}
+</style>
+</head>
+<body>
+	<h2>Registration Page</h2>
+	<form th:action="@{/register}" method="post">
+		<pre>
+    Name:
+    <input type="text" name="name"><br>
+    Password:
+    <input type="password" name="password"><br>
+    <input type="submit" value="Register">
+    </pre>
+	</form>
+</body>
+</html>

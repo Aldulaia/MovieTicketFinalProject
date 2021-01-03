@@ -1,0 +1,124 @@
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<meta charset="ISO-8859-1">
+<title>Order History</title>
+<style>
+body {
+	background-color: #303641;
+}
+
+.fixed {
+	border: 2px solid red;
+	text-align: center;
+	background-color: white;
+	width: 40%;
+	margin-left: 29%;
+	margin-top: 20px;
+}
+
+#firstHeader {
+	text-align: center;
+	color: white;
+}
+
+table.blueTable {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	border: 2px solid #BCBCBC;
+	background-color: #56DBEE;
+	width: 97%;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+table.blueTable td, table.blueTable th {
+	border: 1px solid #AAAAAA;
+	padding: 5px 0px;
+}
+
+table.blueTable tbody td {
+	font-size: 13px;
+}
+
+table.blueTable tr:nth-child(even) {
+	background: #D0E4F5;
+}
+
+table.blueTable thead {
+	background: #1C6EA4;
+	background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+	background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+	background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
+	border-bottom: 2px solid #444444;
+}
+
+table.blueTable thead th {
+	font-size: 19px;
+	font-weight: bold;
+	color: #FF2E82;
+	text-align: center;
+	border-left: 2px solid #D0E4F5;
+}
+
+table.blueTable thead th:first-child {
+	border-left: none;
+}
+
+table.blueTable tfoot td {
+	font-size: 14px;
+}
+
+table.blueTable tfoot .links {
+	text-align: right;
+}
+
+table.blueTable tfoot .links a {
+	display: inline-block;
+	background: #1C6EA4;
+	color: #FFFFFF;
+	padding: 2px 8px;
+	border-radius: 5px;
+}
+</style>
+</head>
+<body>
+	<h1 id="firstHeader">
+		Order Ticket Hisotry
+	</h1>
+	<table border="1" class="blueTable">
+		<tr>
+			<th>Movie ID</th>
+			<th>Movie Name</th>
+			<th>Movie Occupation</th>
+			<th>Guest Name</th>
+			<th>Seat Chosen</th>
+			<th>Movie Show Time</th>
+			<th>Movie Show Date</th>
+			<th>Movie Ticket Price</th>
+		</tr>
+
+		<!-- It's like an advanced for loop -->
+		<tr th:each="movie : ${movies}">
+			<td th:text="${movie.movieId}"></td>
+			<td th:text="${movie.movieName}"></td>
+			<td th:text="${movie.movieOccupation}"></td>
+			<td th:text="${movie.guestName}"></td>
+			<td th:text="${movie.seatChosen}"></td>
+			<td th:text="${movie.movieTime}"></td>
+			<td th:text="${movie.movieDate}"></td>
+			<td th:text="${movie.moviePrice}" >  </td>
+			
+
+
+
+		</tr>
+	</table>
+
+	<div>
+		<div class="fixed">
+			Thank you for adapting our services <br /> <a th:href="@{/}">
+				Return to Movies Menu </a>
+		</div>
+	</div>
+</body>
+</html>

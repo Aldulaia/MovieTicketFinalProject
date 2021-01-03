@@ -1,0 +1,77 @@
+<!DOCTYPE>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Place Order</title>
+<style>
+.secondForm {
+	border: 2px red outset;
+	background-color: white;
+	font-family: "Raleway", sans-serif;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: black;
+}
+
+.loginInfo {
+	font-family: "Raleway", sans-serif;
+	position: fixed;
+	bottom: 85;
+	right: 5;
+	width: 300px;
+	border-left: 4px solid #73AD21;
+	border-top: 4px solid #73AD21;
+	border-bottom: 4px solid #73AD21;
+	box-sizing: border-box;
+	width: 20%;
+	margin: auto;
+	padding: 10px;
+	text-align: center;
+}
+
+input {
+	width: 30%
+}
+
+a {
+	text-align: center;
+}
+</style>
+</head>
+
+<body>
+	<h1>
+		<u> Place order Page </u>
+	</h1>
+	<hr />
+	<hr />
+	<!--  Will not show up until someone logs in -->
+	<div class="loginInfo" sec:authorize="isAuthenticated()">
+		<hr>
+		<b>User's Name:</b> <span sec:authentication="name"></span> <br>
+		<hr>
+		<div>
+			<form class="form" th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout" />
+			</form>
+		</div>
+	</div>
+
+
+	<div class="moviesContainer">
+
+		<form class="secondForm" action="#" th:action="@{/orderHistory}"
+			method="Get">
+			<pre id="movie" th:text="${movieSumm}"> </pre>
+			<input type="submit" value="Show order History" />
+		</form>
+		<form class="secondForm" action="#" th:action="@{/}" method="Get">
+			<input type="submit" value="Order Another Movie" />
+		</form>
+	</div>
+
+
+</body>
+
+</html>

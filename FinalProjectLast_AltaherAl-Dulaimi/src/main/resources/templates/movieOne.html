@@ -1,0 +1,182 @@
+<!DOCTYPE>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<title>MovieOne</title>
+<style>
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+#firstP {
+	color: black;
+	padding-left: 30%;
+	margin-top: -33%;
+}
+
+.formContainer {
+	color: black;
+	padding-left: 30%;
+	margin-top: 4%;
+}
+
+#seatNumberInput {
+	width: 30%;
+}
+
+.movieTime {
+	margin-left: 1%;
+}
+
+.loginInfo {
+	font-family: "Raleway", sans-serif;
+	position: fixed;
+	bottom: 245;
+	right: 5;
+	width: 300px;
+	border-left: 4px solid #73AD21;
+	border-top: 4px solid #73AD21;
+	border-bottom: 4px solid #73AD21;
+	box-sizing: border-box;
+	width: 20%;
+	margin: auto;
+	padding: 10px;
+	text-align: center;
+}
+
+#submitAndConfirm {
+	padding-top: 15px;
+}
+
+span {
+	color: red;
+}
+
+.CovidAlert {
+	font-family: "Raleway", sans-serif;
+	position: fixed;
+	bottom: 70;
+	right: 5;
+	width: 300px;
+	border-left: 4px solid black;
+	border-top: 4px solid black;
+	border-bottom: 4px solid black;
+	box-sizing: border-box;
+	width: 20%;
+	background-color: red;
+	color: white;
+	text-align: center;
+}
+
+.moviesContainer {
+	padding-top: 3%;
+}
+</style>
+</head>
+
+<body>
+	<h1>Frozen</h1>
+
+	<hr />
+	<hr />
+
+	<div class="CovidAlert">
+		<i class="material-icons lock">event</i>
+
+		<div>Covid Alert is a message set on the application by the
+			adminstrator as a notice to place the movie's dates under 'subject to
+			change' with modified times</div>
+
+	</div>
+
+
+	<!--  Will not show up until someone logs in -->
+	<div class="loginInfo" sec:authorize="isAuthenticated()">
+		<hr>
+		<b>User's Name:</b> <span sec:authentication="name"></span> <br>
+		<hr>
+		<div>
+			<form class="form" th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout" />
+			</form>
+		</div>
+	</div>
+
+
+	<div class="moviesContainer">
+
+		<div id="movie">
+			<img
+				src="https://upload.wikimedia.org/wikipedia/en/0/05/Frozen_%282013_film%29_poster.jpg" />
+			<p id="firstP">
+				When the newly crowned Queen Elsa accidentally uses her power to
+				turn things into ice to curse her home in infinite winter, her
+				sister Anna teams up with a mountain man, his playful reindeer, and
+				a snowman to change the weather condition. <br> <b>price:
+					$15 CAD</b> <br /> <b>Directors:</b> Chris Buck, Jennifer Lee <br />
+				<b>Casted By: Jamie Sparer, Roberts</b>
+
+			</p>
+
+		</div>
+
+
+		<!--   <div>
+	<a th:href="@{/seats}"> Proceed to the seat Page</a>
+	</div> -->
+
+		<div class="formContainer">
+			<form action="#" th:action="@{/placeOrder}" method="post"
+				th:object="${movieObj}">
+
+
+				<label><b> Enter the seat number: </b></label> </br> <input
+					th:field="*{seatChosen}" id="seatNumberInput" type="number" min=1
+					max=100 step="1" placeholder="Enter Seat number" required /> <br />
+
+				<label><b> Enter your first and last name: </b></label> </br> <input
+					th:field="*{guestName}" id="firstLastName" type="text"
+					placeholder="Enter your name" required /> <br />
+
+				<div>
+
+					<b> Select your occupation: </b><br /> <input
+						th:field="*{movieOccupation}" type="radio" name="select" value="1">Sheridan
+					College Student<br /> <input th:field="*{movieOccupation}"
+						type="radio" name="select" value="2">
+					<ins> PROG 32758 student</ins>
+					($8)<br /> <input th:field="*{movieOccupation}" type="radio"
+						name="select" value="3">Senior citizen over 65 or child <br />
+					<input th:field="*{movieOccupation}" type="radio" name="select"
+						value="4">Tuesday<br /> <b>Show Time:</b><select
+						class="movieTime" name="movieTime" required>
+						<option value="1:50">1:50</option>
+						<option value="3:40">3:40</option>
+						<option value="6:00">6:00</option>
+						<option value="9:30">9:30</option>
+					</select> <input name="movieId" type="hidden" value="1" /> <input
+						name="movieName" type="hidden" value="Frozen" />
+					<!--   <input name="movieURL" type="hidden" value="https://upload.wikimedia.org/wikipedia/en/0/05/Frozen_%282013_film%29_poster.jpg"   />-->
+
+					<br /> <b>Movie Date:</b><select class="movieDate"
+						name="movieDate" required>
+						<option value="20-12-2020">20-12-2020</option>
+						<option value="22-12-2020">22-12-2020</option>
+						<option value="29-12-2020">29-12-2020</option>
+						<option value="02-01-2020">02-01-2020</option>
+					</select>
+
+
+					<div id="submitAndConfirm">
+						<input type="submit" value="Submit and Confirm" />
+					</div>
+				</div>
+
+			</form>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
